@@ -1,20 +1,28 @@
 post '/users/:id/statuses/create' do
 	@status = Status.new(status: params["status"], user_id: params[:id])
 	@user = User.find(params[:id])
+	@tag = params[:tags]
+	@newtag = @tag.split(',')
+
 	if @status.save
-		@error = ""
+		if @newtag.empty?
+		else
+			@newtag.each do |tag|
+				@status.tags << Tag.find_or_create_by(name:"#{tag}")
+			end
+		end
 		redirect to "/users/#{@user.id}"
 	else
 		@error = "Error! Please try again!"
-		erb :"user/user_index"
+		redirect to "/users/#{@user.id}"
 	end
-
 end
 
 get '/users/:id/statuses/:status_id' do
 	@user = User.find(params[:id])
 	@status = Status.find(params[:status_id])
 	@checklike = Like.find_by(user_id: params[:id], status_id: params["status_id"])
+	# @statuses = Status.all
 	# byebug
 	@like = Like.where(status_id: params[:status_id]).count
 	# @comment = Comment.find_by(status_id: params)

@@ -5,9 +5,11 @@
 	
 <table width="100%">
   <tr>
-    <td width="30%"><form action="/users/logout" method="post">
+    <td width="30%">
+   <form action="/users/logout" method="post">
 		<input type="submit" value="Log Out">
-	</form></td>
+	</form>
+</td>
     <td width="70%">Account with ID <%= @user.id %></td>
   </tr>
   <tr>
@@ -28,6 +30,9 @@
 <form action="/users/<%= @user.id %>/statuses/create" method="post">
 	Status<br/>
 	<textarea type="text" name="status" cols="70"></textarea><br/><br/>
+	Tags<br/>
+	<h4>Separate tags with comma. Do not use empty space</h4>
+	<input id="status_tags" name="tags">
 	<input type="submit" value="Submit">
 </form>
 
@@ -40,5 +45,10 @@
 <h3>All Statuses</h3>
 	<% @statuses.each do |status| %>
 	<li><a href="/users/<%= @user.id %>/statuses/<%= status.id %>"><%= status.status %></a>     <%= status.user.email %></li>
+	<% end %>
+
+<h3>Tags Available</h3>
+	<% @tags.each do |tag| %>
+	<li><a href="/users/<%= @user.id %>/tags/<%= tag.id %>/show"><%= tag.name %></a></li>
 	<% end %>
 </div>

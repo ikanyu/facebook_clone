@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 	has_many :likes
 
 	validates :email, uniqueness: true
+	validates :email, presence: true
+	validates :password, presence: true
 	def check_password(password)
 		if self.password == password
 			true

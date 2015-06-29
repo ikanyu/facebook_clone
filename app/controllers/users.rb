@@ -27,9 +27,13 @@ post '/users/create' do
 	end
 end
 
+Post.find(params[:id]).tags
+
+
 get '/users/:id' do
 	@user = User.find(params[:id])
 	@statuses = Status.all
+	@tags = Tag.all
 	erb :"user/user_show"
 end
 

@@ -1,0 +1,24 @@
+<% if !@error.nil? %>
+<b><%= @error %></b>
+<% end %>
+<div class="container">
+	<p>Hello World!</p>
+	<h2>Create Account</h2>
+	<form action="/users/create" method="post">
+		Email<br/>
+		<input type="text" name="user[email]"><br/><br/>
+		Password<br/>
+		<input type="text" name="user[password]"><br/><br/>
+		<input type="submit" value="Submit">
+	</form>
+</div>
+<div class="container">
+	<h2>Login Here</h2>
+	<form action="/users/login" method="post">
+		Email<br/>
+		<input type="text" name="email"><br/><br/>
+		Password<br/>
+		<input type="text" name="password">
+		<input type="submit" value="Submit">
+	</form>
+</div>

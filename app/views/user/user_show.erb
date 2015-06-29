@@ -1,0 +1,44 @@
+<% if !@error.nil? %>
+<b><%= @error %></b>
+<% end %>
+<div class="container"><br/>
+	
+<table width="100%">
+  <tr>
+    <td width="30%"><form action="/users/logout" method="post">
+		<input type="submit" value="Log Out">
+	</form></td>
+    <td width="70%">Account with ID <%= @user.id %></td>
+  </tr>
+  <tr>
+    <td><form action= "/users/<%= @user.id%>" method= "post">
+    <input name="_method" type="hidden" value="delete">
+    <input type= "submit" value="Delete Account">
+  </form>	</td>
+    <td>Email <%= @user.email %></td>
+
+  </tr>
+  <tr>
+  	  <td><a href="/users/<%= @user.id %>/edit">Edit Account Details</a></td>
+  	  <td>Password <%= @user.password %></td>
+  </tr>
+</table>
+</br>
+
+<form action="/users/<%= @user.id %>/statuses/create" method="post">
+	Status<br/>
+	<textarea type="text" name="status" cols="70"></textarea><br/><br/>
+	<input type="submit" value="Submit">
+</form>
+
+<h3>My Status</h3>
+<h5>Click each link to edit/delete</h5>
+	<% @user.statuses.order("id ASC").each do |status| %>
+	<li><a href="/users/<%= @user.id %>/statuses/<%= status.id %>"><%= status.status %></a></li>
+	<% end %>
+
+<h3>All Statuses</h3>
+	<% @statuses.each do |status| %>
+	<li><a href="/users/<%= @user.id %>/statuses/<%= status.id %>"><%= status.status %></a>     <%= status.user.email %></li>
+	<% end %>
+</div>

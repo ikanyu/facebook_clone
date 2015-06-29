@@ -1,0 +1,14 @@
+<% if !@error.nil? %>
+<b><%= @error %></b>
+<% end %>
+<div class="container">
+	<br/>
+<form action="/users/<%= @user.id %>/edit" method="post">
+	<input type="hidden" name="_method" value="patch">
+	Email<br/>
+	<input type="text" name="user[email]" value="<%= @user.email %>" disabled><br/><br/>
+	Password<br/>
+	<input type="text" name="user[password]" value="<%= @user.password %>">
+	<input type="submit" value="Submit">
+</form>
+</div>

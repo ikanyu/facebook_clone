@@ -1,0 +1,10 @@
+<div class="container">
+	<h2>Comment ID <%= @comment.id %></h2>
+	<h3>Comment</h3>
+	<form action="/users/<%= @comment.user_id %>/statuses/<%= @comment.status_id %>/comments/<%= @comment.id %>/edit" method="post">
+		<input type="hidden" name="_method" value="patch">
+		Update Comment<br/><br/>
+		<textarea type="text" name="comment" cols="70"><%= @comment.comment %></textarea><br/><br/>
+		<input type="submit" value="Submit">
+	</form>
+</div>

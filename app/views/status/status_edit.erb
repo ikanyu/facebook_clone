@@ -1,0 +1,12 @@
+<% if !@error.nil? %>
+<b><%= @error %></b>
+<% end %>
+<div class="container">
+	<br/>
+<form action="/users/<%= @user.id %>/statuses/<%= @status.id %>/edit" method="post">
+	<input type="hidden" name="_method" value="patch">
+	Update Status<br/><br/>
+	<textarea type="text" name="status" cols="70"><%= @status.status %></textarea><br/><br/>
+	<input type="submit" value="Submit">
+</form>
+</div>

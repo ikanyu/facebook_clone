@@ -1,0 +1,6 @@
+<div class="container">
+	<h2>Status Related to <%= @tag.name %> tag</h2>
+		<% @tag.statuses.each do |status| %>
+	<li><a href="/users/<%= @user.id %>/statuses/<%= status.id %>"><%= status.status %></a></li>
+	<% end %>
+</div>
